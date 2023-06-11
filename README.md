@@ -20,3 +20,14 @@ Module 10 Challenge
 ### How do I return a count of each station ID next to the station ID in a session query in sqalchemy?
 - For this I was able to, again, borrow code from the "Chinhook_db_analysis" in class challenge to utilize count, group_by, and order_by functions to achieve the desired result described above.
 - ![Screenshot 2023-06-11 at 3 09 17 PM](https://github.com/nickpalmer2012/sqalchemy-challenge/assets/128104435/afda6fe4-0eba-4d3f-9858-993711f44e14)
+
+
+## Designing Your Climate App
+
+### Importing dependencies
+- I looked back in the class activity named "Ins_flask_with_ORM" to borrow the code I need to import the necessary dependencies.
+
+### Converting the precipitation scores query for 1 year to a dictionary with the dates as the key and the precipitation as the value:
+- For this, I had to consult chat GPT to show me the way. Please see the question and result I received from the great Chat GPT:
+- ![Screenshot 2023-06-11 at 6 10 02 PM](https://github.com/nickpalmer2012/sqalchemy-challenge/assets/128104435/8d074b14-35ac-41a2-9a9c-15e1552f1f07)
+
