@@ -13,7 +13,10 @@ Module 10 Challenge
 - I wanted to remove the rows with a precipitation measurement of NaN because there was only a few of them within the dataset and removing them would not alter the information much.
 - ![Screenshot 2023-06-11 at 2 24 31 PM](https://github.com/nickpalmer2012/sqalchemy-challenge/assets/128104435/085bf61b-cf3b-4a4c-96d9-4edeeba76d03)
 
-### How do I count values in an ORM query?
+### How do I count values in a session query in sqlalchemy?
 - I found this in the SQLAlchemy documentation:
 - ![Screenshot 2023-06-11 at 2 44 43 PM](https://github.com/nickpalmer2012/sqalchemy-challenge/assets/128104435/7f96f828-f06e-46e2-903d-ea3a636261b2)
 
+### How do I return a count of each station ID next to the station ID in a session query in sqalchemy?
+- For this I was able to, again, borrow code from the "Chinhook_db_analysis" in class challenge to utilize count, group_by, and order_by functions to achieve the desired result described above.
+- ![Screenshot 2023-06-11 at 3 09 17 PM](https://github.com/nickpalmer2012/sqalchemy-challenge/assets/128104435/afda6fe4-0eba-4d3f-9858-993711f44e14)
