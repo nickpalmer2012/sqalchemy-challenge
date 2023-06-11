@@ -12,3 +12,8 @@ Module 10 Challenge
 ### How to remove NaN values from a dataframe
 - I wanted to remove the rows with a precipitation measurement of NaN because there was only a few of them within the dataset and removing them would not alter the information much.
 - ![Screenshot 2023-06-11 at 2 24 31 PM](https://github.com/nickpalmer2012/sqalchemy-challenge/assets/128104435/085bf61b-cf3b-4a4c-96d9-4edeeba76d03)
+
+### How do I count values in an ORM query?
+- I found this in the SQLAlchemy documentation:
+- ![Screenshot 2023-06-11 at 2 44 43 PM](https://github.com/nickpalmer2012/sqalchemy-challenge/assets/128104435/7f96f828-f06e-46e2-903d-ea3a636261b2)
+
