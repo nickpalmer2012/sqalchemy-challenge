@@ -21,6 +21,12 @@ Module 10 Challenge
 - For this I was able to, again, borrow code from the "Chinhook_db_analysis" in class challenge to utilize count, group_by, and order_by functions to achieve the desired result described above.
 - ![Screenshot 2023-06-11 at 3 09 17 PM](https://github.com/nickpalmer2012/sqalchemy-challenge/assets/128104435/afda6fe4-0eba-4d3f-9858-993711f44e14)
 
+### Programatically selecting the most active station
+- Chat GPT helped me here
+- Basically, given a list of tuples (in this case the station IDs and count of instances), you can use the "lambda" function along with the "key" parameter in the max function to return the tuple that contains the highest value in the second element of each tuple.
+- ![Screenshot 2023-06-11 at 7 20 36 PM](https://github.com/nickpalmer2012/sqalchemy-challenge/assets/128104435/4a49e8e3-b593-48c8-af1d-19d73ea42d6b)
+
+
 
 ## Designing Your Climate App
 
