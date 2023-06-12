@@ -45,7 +45,14 @@ def homepage():
         f"&nbsp<br/>"
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
-        f"/api/v1.0/tobs"
+        f"/api/v1.0/tobs<br/>"
+        f"/api/v1.0/*start_date(YYYY-mm-dd)*<br/>"
+        f"/api/v1.0/*start_date(YYYY-mm-dd)*/*end_date(YYYY-mm-dd)*<br/>"
+        f"&nbsp<br/>"
+        f"Sample one-date route: /api/v1.0/2010-01-01<br/>"
+        f"Sample date range route: /api/v1.0/2010-01-01/2012-02-11<br/>"
+
+
     )
 
 @app.route("/api/v1.0/precipitation")
@@ -82,16 +89,58 @@ def station_list():
 
 @app.route("/api/v1.0/tobs")
 def temp_data():
-    """Query the temperature observations from the most active station"""
+    # """Query the temperature observations from the most active station"""
+
+    #query the most recent date for data collected at the most active "USC00519281" station
+    most_recent_date_active = session.query(func.max(measurement.date)).\
+        filter(measurement.station == 'USC00519281').scalar()
+    
+    # Convert scalar latest date to datetime object
+    most_recent_date_active_dt = datetime.strptime(most_recent_date_active, '%Y-%m-%d')
+
+    # Calculate the date one year from the last date in data set.
+    one_year_prior_active = most_recent_date_active_dt - timedelta(days=365)
+
     #Query the measurment table for temperature data for only the most active station that was identified in testing.
     most_active_station = session.query(measurement.station, measurement.date, measurement.tobs).\
-        filter(measurement.station == "USC00519281").all()
+        filter(measurement.station == "USC00519281").\
+        filter(measurement.date.between(one_year_prior_active, most_recent_date_active_dt)).all()
     
-     # iterate over the above query result in order to return a readable format for the jsonify function
+    # iterate over the above query result in order to return a readable format for the jsonify function
     temps = [(result.station, result.date, result.tobs) for result in most_active_station]
     
     return jsonify(temps)
 
+@app.route('/api/v1.0/<start>')
+# calculate min, max, and average temperature when given only a start date
+def retrieve_data_start(start):
+    #query based on given start date
+    start_data = session.query(measurement.date, measurement.tobs).\
+    filter(measurement.date == start).all()
+    
+    # Calculate min, average, and max temps for given start date
+    temperatures = [result.tobs for result in start_data]
+    t_min = min(temperatures)
+    t_avg = sum(temperatures) / len(temperatures)
+    t_max = max(temperatures)
+
+    return f"TMIN: {t_min}, TMAX: {t_max}, TAVG: {t_avg}"
+
+@app.route('/api/v1.0/<start>/<end>')
+def retrieve_data_start_end(start, end):
+
+    # calculate min, max, and average temperature when given start date and an end date
+    #query the temperatures for the date range provided
+    start_end_data = session.query(measurement.date, measurement.tobs).\
+    filter(measurement.date.between(start, end)).all()
+
+    # Calculate min, average, and max temps for given start date
+    temperatures = [result.tobs for result in start_end_data]
+    t_min = min(temperatures)
+    t_avg = sum(temperatures) / len(temperatures)
+    t_max = max(temperatures)
+
+    return f"TMIN: {t_min}, TMAX: {t_max}, TAVG: {t_avg}"
 
 
 
